@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
-//using app.get middleware to route all paths coming to root to go to routes
-app.get("/", require("./routes"));
+//using app.use middleware to route all paths coming to root to go to routes
+app.use("/", require("./routes"));
 
 app.listen(port, function (err) {
   if (err) {

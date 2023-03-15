@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const port = 8000;
+const expressLayouts = require('express-ejs-layouts')
+
+app.use(expressLayouts)
 
 //using app.use middleware to route all paths coming to root to go to routes
 app.use("/", require("./routes"));

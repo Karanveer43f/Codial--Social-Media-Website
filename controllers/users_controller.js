@@ -9,3 +9,9 @@ module.exports.posts = function (req, res) {
     title: "Posts",
   });
 };
+
+module.exports.login = function (req, res) {
+  res.render("user_login", {
+    title: "User Login",
+  });
+};

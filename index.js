@@ -45,6 +45,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(passport.setAuthenticatedUser);
+
 //using app.use middleware to route all paths coming to root to go to routes
 app.use("/", require("./routes"));
 

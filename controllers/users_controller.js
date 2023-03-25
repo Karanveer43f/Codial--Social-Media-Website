@@ -11,8 +11,7 @@ module.exports.posts = function (req, res) {
   });
 };
 module.exports.signIn = function (req, res) {
-
-  if(req.isAuthenticated()){
+  if (req.isAuthenticated()) {
     return res.redirect("/users/profile");
   }
 
@@ -22,8 +21,7 @@ module.exports.signIn = function (req, res) {
 };
 
 module.exports.signUp = function (req, res) {
-
-  if(req.isAuthenticated()){
+  if (req.isAuthenticated()) {
     return res.redirect("/users/profile");
   }
 
@@ -61,5 +59,16 @@ module.exports.create = function (req, res) {
 
 // sign in and create sessions for user
 module.exports.createSession = function (req, res) {
-  return res.redirect('/')
+  return res.redirect("/");
+};
+
+module.exports.destroySession = function (req, res) {
+  //in the coding ninjas video , the destroy session works by just calling it, no call back function required
+  // but in the latest version, it requires a callback function
+  req.logout(function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  return res.redirect("/");
 };

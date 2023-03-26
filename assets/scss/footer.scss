@@ -1,0 +1,20 @@
+#layout-footer{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: gray;
+    font-weight: 600;
+    color: white;
+
+    div{
+        margin-left: 20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    }
+}

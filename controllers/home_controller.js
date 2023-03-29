@@ -1,3 +1,4 @@
+const { populate } = require("../models/post");
 const Posts = require("../models/post");
 
 module.exports.home = function (req, res) {
@@ -14,7 +15,12 @@ module.exports.home = function (req, res) {
 
   Posts.find({})
     .populate("user")
-    .populate()
+    .populate({
+      path: 'comments',
+      populate:{
+        path:'user'
+      }
+    })
     .exec(function (err, posts) {
       if (err) {
         console.log("Error in fetching the posts");

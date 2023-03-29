@@ -14,6 +14,7 @@ module.exports.home = function (req, res) {
 
   Posts.find({})
     .populate("user")
+    .populate()
     .exec(function (err, posts) {
       if (err) {
         console.log("Error in fetching the posts");

@@ -2,6 +2,9 @@
     <p>© Karanveer Singh</p>
     <div>
         <a href="/">Home</a>
-        <a href="/users/profile/<%= user.id %>">Profile</a>
+        <% if(locals.user){ %>
+
+            <a href="/users/profile/<%= user.id %>">Profile</a>
+            <%} %>
     </div>
 </footer>

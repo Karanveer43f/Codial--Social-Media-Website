@@ -7,9 +7,19 @@ module.exports.create = async function (req, res) {
       content: req.body.content,
       user: req.user._id,
     });
+
+    if (req.xhr) {
+      return res.status(200).json({
+        data: {
+          post: post,
+        },
+        message: "Post Created!",
+      });
+    }
+
     return res.redirect("back");
   } catch (error) {
-    console.log("Error", err);
+    req.flash("error", err);
     return;
   }
 };
@@ -21,12 +31,15 @@ module.exports.destroy = async function (req, res) {
       post.remove();
 
       await Comment.deleteMany({ post: req.params.id });
+
+      req.flash("success", "Post deleted");
       return res.redirect("back");
     } else {
+      req.flash("Error", "You can't delete this post");
       return res.redirect("back");
     }
   } catch (err) {
-    console.log("Error in destroying post", err);
+    req.flash("error", err);
     return;
   }
 };

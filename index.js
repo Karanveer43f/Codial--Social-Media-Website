@@ -14,7 +14,7 @@ const passportLocal = require("./config/passport-local-strategy");
 const MongoStore = require("connect-mongo")(session);
 const sassMiddleware = require("node-sass-middleware");
 const flash = require("connect-flash");
-const customMware = require('./config/middleware')
+const customMware = require("./config/middleware");
 
 app.use(
   sassMiddleware({
@@ -30,6 +30,9 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 app.use(express.static("./assets"));
+
+//make the uploads path available to th browser
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.use(expressLayouts);
 //extract styles and scripts form sub pages to layouts

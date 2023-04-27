@@ -1,4 +1,6 @@
 const User = require("../models/users");
+const fs = require("fs");
+const path = require("path");
 
 module.exports.profile = function (req, res) {
   User.findById(req.params.id, function (err, user) {
@@ -10,7 +12,6 @@ module.exports.profile = function (req, res) {
 };
 
 module.exports.update = async function (req, res) {
-
   if (req.user.id == req.params.id) {
     try {
       let user = await User.findById(req.params.id);
@@ -23,6 +24,16 @@ module.exports.update = async function (req, res) {
         user.email = req.body.email;
 
         if (req.file) {
+          if (user.avatar) {
+            //the path where the file will be created/already exists
+            const toBeRemoved = path.join(__dirname, "..", user.avatar);
+
+            // if the file already exists, then delete it
+            if (fs.existsSync(toBeRemoved)) {
+              fs.unlinkSync(toBeRemoved);
+            }
+          }
+
           //this is saving the path of the uploaded file into the avatar field;
           user.avatar = User.avatarPath + "/" + req.file.filename;
         }
